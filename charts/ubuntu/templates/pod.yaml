@@ -8,6 +8,8 @@ spec:
   containers:
     - name: ubuntu
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+      resources:
+        {{- .Values.init.resources | toYaml | nindent 8 }}
       args:
         - sh
         - -c
